@@ -14,21 +14,15 @@
 LiquidCrystal_I2C lcd(0x27, 16, 2); // SDA=A4 SCL=A5
 DS3231  rtc(SDA, SCL);
 Time t;
-String prevTime = "", prevDate = "", prevDay = "", prevYY = "", prevMM = "", prevDD = "", prevHH = "", prevmm = "", prevSSS = "", prevdd = "";
-String currTime = "", currDate = "", currDay = "", YY = "", MM = "", DD = "", HH = "", mm = "", ss = "", SSS = "", dd = "";
+String     prevHH = "";
+String currTime = "", MM = "",  HH = "", mm = "", ss = "";
 String AMPM = "";
 int hh;
-uint8_t custChar1[] = {0, 0, 0, 0, 0, 0, 1, 1};
-uint8_t custChar2[] = {0, 0, 0, 0, 0, 0, 24, 24};
-uint8_t custChar3[] = {3, 3, 0, 0, 0, 0, 0};
-uint8_t custChar4[] = {24, 24, 0, 0, 0, 0, 0};
-
-
 
 uint8_t custChar[8][8] = {
   {31, 31, 31, 0, 0, 0, 0, 0},      // Small top line - 0
-  {0, 0, 0, 0, 0, 0, 0, 31},      // Small bottom line - 1
-  {31, 0, 0, 0, 0, 0, 0, 31},      // Small lines top and bottom -2
+  {0, 0, 0, 0, 0, 0, 0, 31},        // Small bottom line - 1
+  {31, 0, 0, 0, 0, 0, 0, 31},       // Small lines top and bottom -2
   {0, 0, 0, 0, 0, 0,  0, 31},       // Thin bottom line - 3
   {31, 31, 31, 31, 31, 31, 15, 7},  // Left bottom chamfer full - 4
   {28, 30, 31, 31, 31, 31, 31, 31}, // Right top chamfer full -5
@@ -41,11 +35,11 @@ uint8_t bigNums[10][6] = {
   {7, 0, 5, 4, 1, 6},         //0
   {0, 5, 254, 1, 255, 1},     //1
   {0, 2, 5, 7, 3, 1},         //2
-  {0, 2, 5, 1, 3, 6},         //3
+  {0, 2, 5, 0, 3, 6},         //3
   {7, 3, 255, 254, 254, 255}, //4
   {7, 2, 0, 1, 3, 6},         //5
   {7, 2, 0, 4, 3, 6},         //6
-  {0, 0, 5, 254, 7, 254},      //7
+  {0, 0, 5, 254, 7, 254},     //7
   {7, 2, 5, 4, 3, 6},         //8
   {7, 2, 5, 1, 3, 6},         //9
 };
@@ -54,13 +48,7 @@ void setup() {
   rtc.begin();
   //  Uncomment These Lines only to set the time in RTC
   //  rtc.setDOW(WEDNESDAY);
-   rtc.setTime(8, 36, 00);
-  //  rtc.setDate(31, 8, 2022);
-
-
-  //  Uncomment These Lines only to set the time in RTC
-  //  rtc.setDOW(WEDNESDAY);
-  // rtc.setTime(17, 38, 4);
+  //  rtc.setTime(8, 45, 00);
   //  rtc.setDate(31, 8, 2022);
 
   lcd.init();
@@ -68,25 +56,9 @@ void setup() {
   lcd.clear();
   Serial.begin(19200);
 
-
-  //  lcd.createChar(12, custChar2);
-  //  lcd.setCursor(7, 0);
-  //  lcd.print((char)12);
-  //  lcd.createChar(13, custChar3);
-  //  lcd.setCursor(6, 1);
-  //  lcd.print((char)13);
-  //  lcd.createChar(14, custChar4);
-  //  lcd.setCursor(7, 1);
-  //  lcd.print((char)14);
-
   for (int cnt = 0; cnt < sizeof(custChar) / 8; cnt++) {
     lcd.createChar(cnt, custChar[cnt]);
   }
-  //  printBigNum(1,9,0);
-  //  delay(5000);
-
-
-
 }
 
 void printBigNum(int number, int startCol, int startRow) {
@@ -105,7 +77,6 @@ void printBigNum(int number, int startCol, int startRow) {
 
   for (int cnt = 0; cnt < 3; cnt++) {       // First line (top half) of digit
     lcd.print((char)thisNumber[cnt]);
-    //lcd.print((char)1);
   }
   lcd.setCursor(startCol, startRow + 1);    // Now position cursor to next line at same start column for digit
   for (int cnt = 3; cnt < 6; cnt++) {       // 2nd line (bottom half)
@@ -132,8 +103,6 @@ void loop()
 
   HH = currTime.substring(0, 2);
   if (prevHH != HH) {
-
-
     hh = HH.toInt();
     if (hh >= 12) {
       AMPM = "PM";
@@ -150,7 +119,6 @@ void loop()
       } else {
         HH = " " + HH;
       }
-
       //Clear First Charcter
       lcd.clear();
     }
