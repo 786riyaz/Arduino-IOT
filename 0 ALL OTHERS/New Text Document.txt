@@ -1,0 +1,1 @@
+NodeMCU to LCD16*2 communication
