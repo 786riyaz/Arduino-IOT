@@ -1,0 +1,14 @@
+#include <Servo.h>              //Servo library
+Servo servo_test;        	//initialize a servo object for the connected servo   
+
+void setup() 
+{ 
+  servo_test.attach(7);      	// attach the signal pin of servo to pin7 of arduino
+}   
+void loop() 
+{ 
+  servo_test.write(0); 		// set rotor position to 0
+  delay(1000);
+  servo_test.write(90);		// set rotor position to 90
+  delay(1000);
+}

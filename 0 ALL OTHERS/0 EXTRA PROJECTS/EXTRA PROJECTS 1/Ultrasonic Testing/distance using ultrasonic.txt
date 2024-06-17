@@ -1,0 +1,26 @@
+const int trigPin = 9;
+const int echoPin = 10;
+long duration;
+int distanceCm, distanceInch;
+
+void setup() {
+	pinMode(trigPin, OUTPUT);
+	pinMode(echoPin, INPUT);
+	Serial.begin(9600);				//for serial IO
+}
+
+void loop() {
+	digitalWrite(trigPin, LOW);			//Creating Pulse
+	delayMicroseconds(2);
+	digitalWrite(trigPin, HIGH);
+	delayMicroseconds(10);
+	digitalWrite(trigPin, LOW);
+
+	duration = pulseIn(echoPin, HIGH);		//Calculating time to return ultrasonic wave
+	distanceCm= duration*0.034/2;			//Converting time in Centimeter
+	distanceInch = duration*0.0133/2;		//Converting time in Inch
+	delay(50);
+	
+	Serial.print("Distance=");			//printing data on serial monitor
+	Serial.println(distanceCm);
+}
