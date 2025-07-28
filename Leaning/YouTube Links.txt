@@ -1,2 +1,0 @@
-RoboShala ::: 1.Getting Started with NodeMCU ESP8266 | RoboShala Hindi
-https://www.youtube.com/watch?v=maGERlv9FMk&list=PLpksGv8aG4d9iI18TbELh4P8C6MhSq3Vs

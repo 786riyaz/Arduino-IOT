@@ -1,0 +1,37 @@
+#include <I2S.h>
+
+#include <Keyboard.h>
+#include <KeyboardLayout.h>
+#include <Keyboard_da_DK.h>
+#include <Keyboard_de_DE.h>
+#include <Keyboard_es_ES.h>
+#include <Keyboard_fr_FR.h>
+#include <Keyboard_hu_HU.h>
+#include <Keyboard_it_IT.h>
+#include <Keyboard_pt_PT.h>
+#include <Keyboard_sv_SE.h>
+
+/*
+  ESP8266 Blink by Simon Peter
+  Blink the blue LED on the ESP-01 module
+  This example code is in the public domain
+
+  The blue LED on the ESP-01 module is connected to GPIO1
+  (which is also the TXD pin; so we cannot use Serial.print() at the same time)
+
+  Note that this sketch uses LED_BUILTIN to find the pin with the internal LED
+*/
+
+void setup() {
+  pinMode(LED_BUILTIN, OUTPUT);  // Initialize the LED_BUILTIN pin as an output
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  digitalWrite(LED_BUILTIN, LOW);  // Turn the LED on (Note that LOW is the voltage level
+  // but actually the LED is on; this is because
+  // it is active low on the ESP-01)
+  delay(300);                      // Wait for a second
+  digitalWrite(LED_BUILTIN, HIGH);  // Turn the LED off by making the voltage HIGH
+  delay(300);                      // Wait for two seconds (to demonstrate the active low LED)
+}

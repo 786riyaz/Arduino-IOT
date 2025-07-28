@@ -1,9 +1,0 @@
-Code Plug ::: How to get started with Arduino IDE in VSCode
-https://www.youtube.com/watch?v=hZQw9rf44OU
-
-MakeUseOf ::: How to Program Arduino in VSCode (Using Platform.io)
-https://www.youtube.com/watch?v=dany7ae_0ks
-
-Abstract Program ::: How to program Arduino with VSCode
-https://www.youtube.com/watch?v=gQ2lsSuXvVU
-
