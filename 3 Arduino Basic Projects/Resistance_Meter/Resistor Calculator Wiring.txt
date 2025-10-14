@@ -1,0 +1,10 @@
+Arduino Nano:
+  5V -----[1kΩ R_ref]----- Node A -----[220Ω R_unknown]----- GND
+                        overseas|
+                        |
+                       A0
+OLED:
+  VCC → Nano 5V
+  GND → Nano GND
+  SDA → Nano A4
+  SCL → Nano A5
