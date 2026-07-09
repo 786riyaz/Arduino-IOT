@@ -1,7 +1,0 @@
-{
-    "configuration": "cpu=atmega328",
-    "board": "arduino:avr:nano",
-    "port": "COM7",
-    "programmer": "avrisp",
-    "sketch": "Concept Exercise\\Blink\\Blink.ino"
-}
